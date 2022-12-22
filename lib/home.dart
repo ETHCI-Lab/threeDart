@@ -51,7 +51,7 @@ class _MyAppState extends State<WebGlLoaderObj> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     width = screenSize!.width;
-    height = screenSize!.height - 60;
+    height = screenSize!.height;
 
     three3dRender = FlutterGlPlugin();
 
@@ -83,26 +83,18 @@ class _MyAppState extends State<WebGlLoaderObj> {
 
     screenSize = mqd.size;
     dpr = mqd.devicePixelRatio;
-
+    print("dpr");
+    print(dpr);
     initPlatformState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("test"),
-      ),
       body: Builder(
         builder: (BuildContext context) {
           initSize(context);
           return SingleChildScrollView(child: _build(context));
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Text("render"),
-        onPressed: () {
-          render();
         },
       ),
     );
@@ -147,9 +139,9 @@ class _MyAppState extends State<WebGlLoaderObj> {
     int t1 = DateTime.now().millisecondsSinceEpoch;
 
     if (verbose) {
-      print("render cost: ${t1 - t} ");
-      print(renderer!.info.memory);
-      print(renderer!.info.render);
+      // print("render cost: ${t1 - t} ");
+      // print(renderer!.info.memory);
+      // print(renderer!.info.render);
     }
 
     // 重要 更新纹理之前一定要调用 确保gl程序执行完毕
@@ -159,7 +151,7 @@ class _MyAppState extends State<WebGlLoaderObj> {
     // print(" --------------pixels............. ");
     // print(pixels);
 
-    if (verbose) print(" render: sourceTexture: $sourceTexture ");
+    // if (verbose) print(" render: sourceTexture: $sourceTexture ");
 
     if (!kIsWeb) {
       three3dRender.updateTexture(sourceTexture);
@@ -278,7 +270,7 @@ class _MyAppState extends State<WebGlLoaderObj> {
 
   @override
   void dispose() {
-    print(" dispose ............. ");
+    // print(" dispose ............. ");
 
     disposed = true;
     three3dRender.dispose();

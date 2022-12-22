@@ -14,7 +14,6 @@ class ThreeDa extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'threeDart',
       home: WebGlLoaderObj(),
     );
   }
