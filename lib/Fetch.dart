@@ -69,4 +69,23 @@ class Fetch{
     }
   }
 
+  static search()async{
+    final response = await http.post(
+      Uri.parse("${_url}SearchTable"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'DB': 'DreamLog',
+      }),
+    );
+
+    if(response.statusCode == 200){
+      // print(jsonDecode(response.body)[0]);
+      jsonDecode(response.body).forEach((element) => print(element));
+    }else{
+
+      throw Exception('Failed to fetch');
+    }
+  }
 }

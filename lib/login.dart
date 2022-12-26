@@ -66,9 +66,12 @@ class CategoryPageState extends State<CategoryPage> {
     ),
     );
   }
-}
 
-login(String name,String password) async{
-  var ans =  await Fetch.login(User(name: name, password: password));
-  bus.emit('login',ans.name);
+  login(String name,String password) async{
+    var ans =  await Fetch.login(User(name: name, password: password));
+    if(ans.name!=null){
+      bus.emit('login',ans.name);
+      Navigator.of(context).pop();
+    }
+  }
 }

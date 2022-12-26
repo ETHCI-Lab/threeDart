@@ -4,13 +4,20 @@ import 'home.dart';
 import 'Fetch.dart';
 import 'login.dart';
 import 'EventBus.dart';
+import 'log.dart';
+
+String name = "";
 
 void main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
+    Fetch.search();
+    bus.on('login', (arg) {
+      name = arg;
+      print(arg);
+    });
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('test')),
@@ -29,24 +36,7 @@ class StatefulDrawer extends StatefulWidget{
 }
 
 class _StatefulDrawer extends State<StatefulDrawer>{
-  String _name = 'test';
 
-
-  @override
-  void initState() {
-    bus.on('login', (arg) {
-      setState(() {
-        _name = arg;
-        print(arg);
-      });
-    });
-    super.initState();
-  }
-  @override
-  void dispose() {
-    print("dispose");
-    super.dispose();
-  }
   @override
   Widget build(BuildContext context) {
     return  Drawer(
@@ -59,16 +49,16 @@ class _StatefulDrawer extends State<StatefulDrawer>{
       child: Column(
         children:  [
           Row(
-            children:   [
+            children:  [
               Expanded(
                 flex: 1,
                 child: UserAccountsDrawerHeader(
-                  accountName: Text(_name),
-                  accountEmail: const Text("test@gmail.com"),
+                  accountName: Text(name),
+                  accountEmail:const Text("test@gmail.com"),
                   currentAccountPicture: const CircleAvatar(
                     backgroundImage: NetworkImage("http://media.discordapp.net/attachments/1051886825142243419/1052240060612890744/1606783962.png"),
                   ),
-                  decoration:const BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.fitWidth,
                           image: NetworkImage("http://cdn.discordapp.com/attachments/1051886825142243419/1053691923526864896/242274964.png")
@@ -125,7 +115,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text("test"),
             ElevatedButton(
             style: style,
             onPressed: (){
@@ -138,16 +127,23 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ElevatedButton(
               style: style,
               onPressed: (){
-                // login('root','aaaa');
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (BuildContext context)=> const CategoryPage())
                 );
               },
               child: const Text('login'),
             ),
+            ElevatedButton(
+              style: style,
+              onPressed: (){
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context)=> const Log(list: list))
+                );
+              },
+              child: const Text('SearchLog'),
+            ),
           ],
         ),
       ));
   }
 }
-

@@ -67,29 +67,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     # - assets/helvetiker_bold.typeface.json
-    - assets/pingfang.ttf
-    - assets/kenpixel.ttf
-    - assets/winter.jpg
-    - assets/lut.cube
-    - assets/demo.png
-    - assets/KOMO-v5.cube
-    - assets/screenshots/
-    - assets/models/obj/test/
-    - assets/models/obj/male02/
-    - assets/models/json/
-    - assets/models/gltf/
-    - assets/models/gltf/test/
-    - assets/models/gltf/RobotExpressive/
-    - assets/models/gltf/DamagedHelmet/glTF/
-    - assets/models/gltf/AnimatedMorphSphere/glTF/
-    - assets/models/svg/
-    - assets/models/fbx/
-    - assets/models/
-    - assets/textures/
-    - assets/textures/equirectangular/
-    - assets/textures/terrain/
-    - assets/textures/patterns/
-    - assets/textures/sprites/
+    - assets/models/scene.obj
+    - assets/models/scene.mtl
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
