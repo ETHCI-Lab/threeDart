@@ -189,9 +189,9 @@ class _MyAppState extends State<WebGlLoaderObj> {
   initPage() async{
     scene = three.Scene();
     scene.background = three.Color(0xcccccc);
-    scene.fog = three.FogExp2(0xcccccc, 0.002);
+    scene.fog = three.FogExp2(0xB47841, 0.002);
 
-    camera = three.PerspectiveCamera(60, width / height, 1, 1000);
+    camera = three.PerspectiveCamera(60, width / height, 1, 10000);
     camera.position.set(400, 200, 0);
 
     // controls
@@ -207,50 +207,37 @@ class _MyAppState extends State<WebGlLoaderObj> {
     controls.screenSpacePanning = false;
 
     controls.minDistance = 10;
-    controls.maxDistance = 1000;
+    controls.maxDistance = 10000;
 
     controls.maxPolarAngle = three.Math.pi / 2;
 
     // world
 
-    var geometry = three.CylinderGeometry(0, 10, 30, 4, 1);
-    var material = three.MeshPhongMaterial({"color": 0xffffff, "flatShading": true});
-
-    for (var i = 0; i < 500; i++) {
-      var mesh = three.Mesh(geometry, material);
-      mesh.position.x = three.Math.random() * 1600 - 800;
-      mesh.position.y = 0;
-      mesh.position.z = three.Math.random() * 1600 - 800;
-      mesh.updateMatrix();
-      mesh.matrixAutoUpdate = false;
-      scene.add(mesh);
-    }
-
     // lights
 
     var dirLight1 = three.DirectionalLight(0xffffff);
-    dirLight1.position.set(1, 1, 1);
+    dirLight1.position.set(1, 100, 1);
     scene.add(dirLight1);
 
-    var dirLight2 = three.DirectionalLight(0x002288);
-    dirLight2.position.set(-1, -1, -1);
+    var dirLight2 = three.DirectionalLight(0xffffff);
+    dirLight2.position.set(1, -10,1);
     scene.add(dirLight2);
 
-    var ambientLight = three.AmbientLight(0x222222);
+    var ambientLight = three.AmbientLight(0xFF2912);
     scene.add(ambientLight);
 
     var manager = three.LoadingManager();
 
     var mtlLoader = three_jsm.MTLLoader(manager);
-    mtlLoader.setPath('assets/models/obj/male02/');
-    var materials = await mtlLoader.loadAsync('male02.mtl');
+    mtlLoader.setPath('assets/models/obj/test/');
+    var materials = await mtlLoader.loadAsync('test.mtl');
     await materials.preload();
 
     var loader = three_jsm.OBJLoader(null);
     loader.setMaterials(materials);
-    var object = await loader.loadAsync('assets/models/obj/male02/male02.obj');
+    var object = await loader.loadAsync('assets/models/obj/test/test.obj');
 
-    object.scale.set(10.0, 10.0, 10.0);
+    object.scale.set(20.0, 20.0, 20.0);
     scene.add(object);
 
     animate();
