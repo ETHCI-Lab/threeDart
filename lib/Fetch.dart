@@ -36,6 +36,34 @@ class User{
   }
 }
 
+class DreamLog{
+  final String USER_ID;
+  final String UserName;
+  final String InputPrompt;
+  final int Seed;
+  final String Time;
+
+  const DreamLog({
+    required this.USER_ID,
+    required this.UserName,
+    required this.InputPrompt,
+    required this.Seed,
+    required this.Time,
+  });
+
+
+  factory DreamLog.fromJson(Map<String, dynamic> json) {
+    return DreamLog(
+      USER_ID: json['USER_ID'],
+      UserName: json['UserName'],
+      InputPrompt: json['InputPrompt'],
+      Seed: json['Seed'],
+      Time: json['Time'],
+    );
+  }
+}
+
+
 class Fetch{
   static const _url = 'https://dev.ethci.org:2053/api/';
 
@@ -69,7 +97,7 @@ class Fetch{
     }
   }
 
-  static search()async{
+  static Future<List<DreamLog>> search()async{
     final response = await http.post(
       Uri.parse("${_url}SearchTable"),
       headers: <String, String>{
@@ -81,8 +109,9 @@ class Fetch{
     );
 
     if(response.statusCode == 200){
-      // print(jsonDecode(response.body)[0]);
-      jsonDecode(response.body).forEach((element) => print(element));
+      List<DreamLog> list = <DreamLog>[];
+      json.decode(utf8.decode(response.bodyBytes)).forEach((element) => list.add(DreamLog.fromJson(element)));
+      return list;
     }else{
 
       throw Exception('Failed to fetch');

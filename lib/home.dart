@@ -242,13 +242,13 @@ class _MyAppState extends State<WebGlLoaderObj> {
     var manager = three.LoadingManager();
 
     var mtlLoader = three_jsm.MTLLoader(manager);
-    mtlLoader.setPath('assets/models/obj/');
-    var materials = await mtlLoader.loadAsync('scene.mtl');
+    mtlLoader.setPath('assets/models/obj/male02/');
+    var materials = await mtlLoader.loadAsync('male02.mtl');
     await materials.preload();
 
     var loader = three_jsm.OBJLoader(null);
     loader.setMaterials(materials);
-    var object = await loader.loadAsync('assets/models/scene.obj');
+    var object = await loader.loadAsync('assets/models/obj/male02/male02.obj');
 
     object.scale.set(10.0, 10.0, 10.0);
     scene.add(object);

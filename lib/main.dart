@@ -135,9 +135,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
             ElevatedButton(
               style: style,
-              onPressed: (){
+              onPressed: () async{
+                List<DreamLog> list = await Fetch.search();
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (BuildContext context)=> const Log(list: list))
+                    MaterialPageRoute(builder: (BuildContext context)=>  Log(list: list))
                 );
               },
               child: const Text('SearchLog'),
