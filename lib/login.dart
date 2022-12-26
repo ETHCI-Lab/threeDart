@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'Fetch.dart';
+import 'EventBus.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({super.key});
@@ -69,5 +70,5 @@ class CategoryPageState extends State<CategoryPage> {
 
 login(String name,String password) async{
   var ans =  await Fetch.login(User(name: name, password: password));
-  print(ans.name);
+  bus.emit('login',ans.name);
 }
