@@ -37,6 +37,7 @@ dependencies:
   bootstrap_icons: ^1.5.0
   http: ^0.13.5
   gradient_borders: ^0.2.0
+  google_fonts: ^3.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -69,6 +70,9 @@ flutter:
   assets:
     # - assets/helvetiker_bold.typeface.json
     - assets/img/bg.png
+    - assets/img/bg2.png
+    - assets/img/bg3.png
+    - assets/img/bg4.png
     - assets/img/icon.png
     - assets/models/obj/test/test.obj
     - assets/models/obj/test/test.mtl

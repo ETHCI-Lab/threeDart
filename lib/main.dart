@@ -8,6 +8,7 @@ import 'Fetch.dart';
 import 'login.dart';
 import 'EventBus.dart';
 import 'log.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 String name = "";
 
@@ -30,8 +31,17 @@ class MyApp extends StatelessWidget {
         ),
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Color(0XFFA49188),
-            title: const Text('Meta Classroom alpha 0.01'),
+            centerTitle: true,
+            backgroundColor: Color(0XFF402A26),
+            title: Text('Meta Classroom alpha 0.01',
+              style: GoogleFonts.notoSerif(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(30),
@@ -83,7 +93,7 @@ class _StatefulDrawer extends State<StatefulDrawer>{
                     decoration: const BoxDecoration(
                         image: DecorationImage(
                             fit: BoxFit.fitWidth,
-                            image: NetworkImage("https://cdn.discordapp.com/attachments/1056792094926192680/1057347835844100117/3613635699.png")
+                            image: AssetImage("assets/img/bg4.png")
                         )
                     ),
                   ),
@@ -115,6 +125,28 @@ class _StatefulDrawer extends State<StatefulDrawer>{
               backgroundColor: Colors.transparent,
               child:  Icon(BootstrapIcons.sliders,color: Color(0XFFFFFFFF),),
             ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: const ListTile(
+              title: Text("log list",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              leading: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                child:  Icon(BootstrapIcons.list_ul,color: Color(0XFFFFFFFF),),
+              ),
+            ),
+            onTap: () async{
+              List<DreamLog> list = await Fetch.search();
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context)=>  Log(list: list))
+              );
+            },
           ),
           const SizedBox(
             height: 10,
@@ -178,13 +210,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children:  [
-                const Expanded(
+                 Expanded(
                   child:Text('Introducing to Meta Classroom',
                     softWrap:true,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 34,
-                      fontWeight: FontWeight.w600,
+                    style: GoogleFonts.notoSerif(
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),
@@ -206,7 +240,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         ],
                       ),
                 ),
-              ))],
+              )
+                )
+              ],
             ),
             const SizedBox(
               height: 30,
@@ -232,16 +268,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(BootstrapIcons.headset_vr,color: Color(0XFFFFFFFF)),
-                        SizedBox(
+                      children:  <Widget>[
+                        const Icon(BootstrapIcons.headset_vr,color: Color(0XFFFFFFFF)),
+                        const SizedBox(
                           height: 5,
                         ),
                         Text(
                           'Virtual Reality',
                           textScaleFactor: 1.25,
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
+                          style: GoogleFonts.notoSerif(
+                            textStyle: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -264,16 +304,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(BootstrapIcons.robot,color: Color(0XFFFFFFFF)),
-                        SizedBox(
+                      children:  <Widget>[
+                        const Icon(BootstrapIcons.robot,color: Color(0XFFFFFFFF)),
+                        const SizedBox(
                           height: 5,
                         ),
                         Text(
                           'Ai Assistant',
                           textScaleFactor: 1.25,
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
+                          style: GoogleFonts.notoSerif(
+                            textStyle: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -309,16 +353,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const <Widget>[
-                      Icon(BootstrapIcons.people_fill,color: Color(0XFFFFFFFF)),
-                      SizedBox(
+                    children:  <Widget>[
+                      const Icon(BootstrapIcons.people_fill,color: Color(0XFFFFFFFF)),
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
                         'Face to face Interaction',
                         textScaleFactor: 1.25,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
+                        style: GoogleFonts.notoSerif(
+                          textStyle: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -340,16 +388,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const <Widget>[
-                      Icon(BootstrapIcons.box_arrow_up_right,color: Color(0XFFFFFFFF)),
-                      SizedBox(
+                    children: <Widget>[
+                      const Icon(BootstrapIcons.box_arrow_up_right,color: Color(0XFFFFFFFF)),
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
                         'Share Screen',
                         textScaleFactor: 1.25,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
+                        style: GoogleFonts.notoSerif(
+                          textStyle: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -364,9 +416,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 width: 500,
                 height: 170,
                 decoration: BoxDecoration(
-                    image: DecorationImage(
+                    image: const DecorationImage(
                         fit: BoxFit.fitWidth,
-                        image: NetworkImage("https://cdn.discordapp.com/attachments/758725799711866921/1057343405857980467/valcano.png")
+                        image: NetworkImage("https://cdn.discordapp.com/attachments/758725799711866921/1057358825017065512/image_71.png")
                     ),
                     borderRadius: BorderRadius.circular(30),
                     gradient: const LinearGradient(
@@ -374,12 +426,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
                     )
                 ),
-                child: const Center(
+                child:  Center(
                   child: Text(
                     'Try it now',
                     textScaleFactor: 2,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white),
+                    style: GoogleFonts.notoSerif(
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
