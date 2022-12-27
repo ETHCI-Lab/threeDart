@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:bootstrap_icons/bootstrap_icons.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 import 'home.dart';
 import 'Fetch.dart';
 import 'login.dart';
@@ -58,7 +59,7 @@ class _StatefulDrawer extends State<StatefulDrawer>{
   @override
   Widget build(BuildContext context) {
     return  Drawer(
-      backgroundColor: const Color(0X88FFFFFF),
+      backgroundColor: const Color(0X90FFFFFF),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(60),
@@ -67,10 +68,6 @@ class _StatefulDrawer extends State<StatefulDrawer>{
       ),
       child: Column(
         children:  [
-          BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 2,sigmaY: 2),
-            child: Container(),
-          ),
           Row(
             children:  [
               Expanded(
@@ -119,7 +116,6 @@ class _StatefulDrawer extends State<StatefulDrawer>{
       ),
     );
   }
-
 }
 
 class MyStatefulWidget extends StatefulWidget {
@@ -145,7 +141,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
       body: Container(
         margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-        padding: const EdgeInsets.fromLTRB(30, 10, 30, 30),
+        padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -157,8 +153,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                Expanded(
+              children:  [
+                const Expanded(
                   child:Text('Introducing to Meta Classroom',
                     softWrap:true,
                     style: TextStyle(
@@ -171,9 +167,23 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 30,
-                  backgroundImage: AssetImage("assets/img/icon.png"),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(2, 2, 2, 2),
+                    child: Padding(
+                      padding:const EdgeInsets.fromLTRB(2, 2, 2, 2),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children:const [
+                          Image(
+                            width: 40,
+                            image: AssetImage("assets/img/icon.png")
+                          )
+                        ],
+                      ),
+                  // backgroundImage: AssetImage("assets/img/icon.png"),
                 ),
-              ],
+              ))],
             ),
             const SizedBox(
               height: 30,
@@ -185,12 +195,48 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 Container(
                   height: 200,
                   width: 150,
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    border:const GradientBoxBorder(
+                      gradient: LinearGradient(colors: [Colors.white, Color(0X400B0B0B)]),
+                      width: 1,
+                    ),
+                    gradient: const LinearGradient(
+                        begin: Alignment.topRight,
+                        colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
+                    )
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Virtual Reality',
+                      textScaleFactor: 1.25,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
                 ),
                 Container(
                   height: 200,
                   width: 150,
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                      border:const GradientBoxBorder(
+                        gradient: LinearGradient(colors: [Colors.white, Color(0X400B0B0B)]),
+                        width: 1,
+                      ),
+                      gradient: const LinearGradient(
+                          begin: Alignment.topRight,
+                          colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
+                      )
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Ai Assistant',
+                      textScaleFactor: 1.25,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -204,12 +250,48 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 Container(
                   height: 150,
                   width: 150,
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      border:const GradientBoxBorder(
+                        gradient: LinearGradient(colors: [Colors.white, Color(0X400B0B0B)]),
+                        width: 1,
+                      ),
+                      gradient: const LinearGradient(
+                          begin: Alignment.topRight,
+                          colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
+                      )
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Face to face Interaction',
+                      textScaleFactor: 1.25,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
                 Container(
                   height: 150,
                   width: 150,
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      border:const GradientBoxBorder(
+                        gradient: LinearGradient(colors: [Colors.white, Color(0X400B0B0B)]),
+                        width: 1,
+                      ),
+                      gradient: const LinearGradient(
+                          begin: Alignment.topRight,
+                          colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
+                      )
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Share Screen',
+                      textScaleFactor: 1.25,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -219,7 +301,25 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               width: 500,
               height: 170,
-              color: Colors.white,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  border:const GradientBoxBorder(
+                    gradient: LinearGradient(colors: [Colors.white, Color(0X400B0B0B)]),
+                    width: 1,
+                  ),
+                  gradient: const LinearGradient(
+                      begin: Alignment.topRight,
+                      colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
+                  )
+              ),
+              child: const Center(
+                child: Text(
+                  'Try it now',
+                  textScaleFactor: 2,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             )
           ],
         ),
