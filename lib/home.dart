@@ -188,7 +188,7 @@ class _MyAppState extends State<WebGlLoaderObj> {
 
   initPage() async{
     scene = three.Scene();
-    scene.background = three.Color(0xcccccc);
+    scene.background = three.Color(0x000000);
     scene.fog = three.FogExp2(0xB47841, 0.002);
 
     camera = three.PerspectiveCamera(60, width / height, 1, 10000);

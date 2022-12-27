@@ -163,22 +163,63 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     softWrap:true,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 25,
+                      fontSize: 34,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
-                Image(image: AssetImage("assets/img/icon.png"))
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 30,
+                  backgroundImage: AssetImage("assets/img/icon.png"),
+                ),
               ],
             ),
-            Row(
-              children: [
-
-              ],
+            const SizedBox(
+              height: 30,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
+                Container(
+                  height: 200,
+                  width: 150,
+                  color: Colors.white,
+                ),
+                Container(
+                  height: 200,
+                  width: 150,
+                  color: Colors.white,
+                ),
               ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 150,
+                  width: 150,
+                  color: Colors.white,
+                ),
+                Container(
+                  height: 150,
+                  width: 150,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              width: 500,
+              height: 170,
+              color: Colors.white,
             )
           ],
         ),
