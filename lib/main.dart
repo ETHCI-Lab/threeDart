@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'home.dart';
@@ -16,13 +18,29 @@ class MyApp extends StatelessWidget {
     Fetch.search();
     bus.on('login', (arg) {
       name = arg;
-      print(arg);
     });
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('test')),
-        drawer:  const StatefulDrawer(),
-        body: const MyStatefulWidget(),
+      home: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/img/bg.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Color(0XFFA49188),
+            title: const Text('Meta Classroom alpha 0.01'),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(30),
+              ),
+            ),
+          ),
+          drawer:  const StatefulDrawer(),
+          backgroundColor: Colors.transparent,
+          body: const MyStatefulWidget(),
+        ),
       ),
     );
   }
@@ -40,6 +58,7 @@ class _StatefulDrawer extends State<StatefulDrawer>{
   @override
   Widget build(BuildContext context) {
     return  Drawer(
+      backgroundColor: const Color(0X88FFFFFF),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(60),
@@ -48,6 +67,10 @@ class _StatefulDrawer extends State<StatefulDrawer>{
       ),
       child: Column(
         children:  [
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 2,sigmaY: 2),
+            child: Container(),
+          ),
           Row(
             children:  [
               Expanded(
@@ -69,18 +92,26 @@ class _StatefulDrawer extends State<StatefulDrawer>{
             ],
           ),
           const ListTile(
-            title: Text("setProfile"),
+            title: Text("setProfile",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
             leading: CircleAvatar(
               backgroundColor: Colors.transparent,
-              child:  Icon(BootstrapIcons.people_fill,color: Color(0XFF263238),),
+              child:  Icon(BootstrapIcons.people_fill,color: Color(0XFFFFFFFF),),
             ),
           ),
           const Divider(),
           const ListTile(
-            title: Text("setting"),
+            title: Text("setting",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
             leading: CircleAvatar(
               backgroundColor: Colors.transparent,
-              child:  Icon(BootstrapIcons.sliders,color: Color(0XFF263238),),
+              child:  Icon(BootstrapIcons.sliders,color: Color(0XFFFFFFFF),),
             ),
           ),
           const Divider(),
@@ -110,39 +141,45 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
     return Scaffold(
-      body: Center(
+      backgroundColor: Colors.transparent,
+
+      body: Container(
+        margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+        padding: const EdgeInsets.fromLTRB(30, 10, 30, 30),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ElevatedButton(
-            style: style,
-            onPressed: (){
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (BuildContext context)=> const WebGlLoaderObj())
-              );
-            },
-            child: const Text('to three'),
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 4,sigmaY: 4),
+              child: Container(),
             ),
-            ElevatedButton(
-              style: style,
-              onPressed: (){
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (BuildContext context)=> const CategoryPage())
-                );
-              },
-              child: const Text('login'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                Expanded(
+                  child:Text('Introducing to Meta Classroom',
+                    softWrap:true,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
+                Image(image: AssetImage("assets/img/icon.png"))
+              ],
             ),
-            ElevatedButton(
-              style: style,
-              onPressed: () async{
-                List<DreamLog> list = await Fetch.search();
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (BuildContext context)=>  Log(list: list))
-                );
-              },
-              child: const Text('SearchLog'),
+            Row(
+              children: [
+
+              ],
             ),
+            Row(
+              children: [
+
+              ],
+            )
           ],
         ),
       ));
