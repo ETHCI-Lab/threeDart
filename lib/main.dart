@@ -138,7 +138,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-
       body: Container(
         margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
         padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
@@ -181,7 +180,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                           )
                         ],
                       ),
-                  // backgroundImage: AssetImage("assets/img/icon.png"),
                 ),
               ))],
             ),
@@ -206,38 +204,60 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
                     )
                   ),
-                  child: const Center(
-                    child: Text(
-                      'Virtual Reality',
-                      textScaleFactor: 1.25,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const <Widget>[
+                        Icon(BootstrapIcons.headset_vr,color: Color(0XFFFFFFFF)),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Virtual Reality',
+                          textScaleFactor: 1.25,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
-                  )
                 ),
-                Container(
-                  height: 200,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                      border:const GradientBoxBorder(
-                        gradient: LinearGradient(colors: [Colors.white, Color(0X400B0B0B)]),
-                        width: 1,
-                      ),
-                      gradient: const LinearGradient(
-                          begin: Alignment.topRight,
-                          colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
-                      )
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Ai Assistant',
-                      textScaleFactor: 1.25,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white),
+                InkWell(
+                  child: Container(
+                    height: 200,
+                    width: 150,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        border:const GradientBoxBorder(
+                          gradient: LinearGradient(colors: [Colors.white, Color(0X400B0B0B)]),
+                          width: 1,
+                        ),
+                        gradient: const LinearGradient(
+                            begin: Alignment.topRight,
+                            colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
+                        )
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const <Widget>[
+                        Icon(BootstrapIcons.robot,color: Color(0XFFFFFFFF)),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Ai Assistant',
+                          textScaleFactor: 1.25,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
+                  onTap: (){
+                    print("test");
+                  },
                 ),
+
               ],
             ),
             const SizedBox(
@@ -261,13 +281,21 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                           colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
                       )
                   ),
-                  child: const Center(
-                    child: Text(
-                      'Face to face Interaction',
-                      textScaleFactor: 1.25,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white),
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const <Widget>[
+                      Icon(BootstrapIcons.people_fill,color: Color(0XFFFFFFFF)),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Face to face Interaction',
+                        textScaleFactor: 1.25,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
                   ),
                 ),
                 Container(
@@ -284,13 +312,21 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                           colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
                       )
                   ),
-                  child: const Center(
-                    child: Text(
-                      'Share Screen',
-                      textScaleFactor: 1.25,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white),
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const <Widget>[
+                      Icon(BootstrapIcons.box_arrow_up_right,color: Color(0XFFFFFFFF)),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Share Screen',
+                        textScaleFactor: 1.25,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -298,29 +334,36 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             const SizedBox(
               height: 30,
             ),
-            Container(
-              width: 500,
-              height: 170,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  border:const GradientBoxBorder(
-                    gradient: LinearGradient(colors: [Colors.white, Color(0X400B0B0B)]),
-                    width: 1,
+            InkWell(
+              child: Container(
+                width: 500,
+                height: 170,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    border:const GradientBoxBorder(
+                      gradient: LinearGradient(colors: [Colors.white, Color(0X400B0B0B)]),
+                      width: 1,
+                    ),
+                    gradient: const LinearGradient(
+                        begin: Alignment.topRight,
+                        colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
+                    )
+                ),
+                child: const Center(
+                  child: Text(
+                    'Try it now',
+                    textScaleFactor: 2,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white),
                   ),
-                  gradient: const LinearGradient(
-                      begin: Alignment.topRight,
-                      colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
-                  )
-              ),
-              child: const Center(
-                child: Text(
-                  'Try it now',
-                  textScaleFactor: 2,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white),
                 ),
               ),
-            )
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context)=> const WebGlLoaderObj())
+                );
+              },
+            ),
           ],
         ),
       ));
