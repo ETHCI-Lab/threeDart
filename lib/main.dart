@@ -72,19 +72,22 @@ class _StatefulDrawer extends State<StatefulDrawer>{
             children:  [
               Expanded(
                 flex: 1,
-                child: UserAccountsDrawerHeader(
-                  accountName: Text(name),
-                  accountEmail:const Text("test@gmail.com"),
-                  currentAccountPicture: const CircleAvatar(
-                    backgroundImage: NetworkImage("http://media.discordapp.net/attachments/1051886825142243419/1052240060612890744/1606783962.png"),
+                child:SizedBox(
+                  height: 220,
+                  child: UserAccountsDrawerHeader(
+                    accountName: Text(name),
+                    accountEmail:const Text("test@gmail.com"),
+                    currentAccountPicture: const CircleAvatar(
+                      backgroundImage: NetworkImage("http://media.discordapp.net/attachments/1051886825142243419/1052240060612890744/1606783962.png"),
+                    ),
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.fitWidth,
+                            image: NetworkImage("https://cdn.discordapp.com/attachments/1056792094926192680/1057347835844100117/3613635699.png")
+                        )
+                    ),
                   ),
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.fitWidth,
-                          image: NetworkImage("http://cdn.discordapp.com/attachments/1051886825142243419/1053691923526864896/242274964.png")
-                      )
-                  ),
-                ),
+                )
               )
             ],
           ),
@@ -99,7 +102,9 @@ class _StatefulDrawer extends State<StatefulDrawer>{
               child:  Icon(BootstrapIcons.people_fill,color: Color(0XFFFFFFFF),),
             ),
           ),
-          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
           const ListTile(
             title: Text("setting",
               style: TextStyle(
@@ -111,7 +116,27 @@ class _StatefulDrawer extends State<StatefulDrawer>{
               child:  Icon(BootstrapIcons.sliders,color: Color(0XFFFFFFFF),),
             ),
           ),
-          const Divider(),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: const ListTile(
+              title: Text("login",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              leading: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                child:  Icon(BootstrapIcons.box_arrow_in_right,color: Color(0XFFFFFFFF),),
+              ),
+            ),
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context)=> const CategoryPage())
+              );
+            },
+          ),
         ],
       ),
     );
@@ -339,11 +364,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 width: 500,
                 height: 170,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    border:const GradientBoxBorder(
-                      gradient: LinearGradient(colors: [Colors.white, Color(0X400B0B0B)]),
-                      width: 1,
+                    image: DecorationImage(
+                        fit: BoxFit.fitWidth,
+                        image: NetworkImage("https://cdn.discordapp.com/attachments/758725799711866921/1057343405857980467/valcano.png")
                     ),
+                    borderRadius: BorderRadius.circular(30),
                     gradient: const LinearGradient(
                         begin: Alignment.topRight,
                         colors: [Color(0x80FFFFFF), Color(0x20FFFFFF)]
