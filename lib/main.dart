@@ -8,6 +8,7 @@ import 'Fetch.dart';
 import 'login.dart';
 import 'EventBus.dart';
 import 'log.dart';
+import 'chatGpt.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 String name = "";
@@ -85,9 +86,14 @@ class _StatefulDrawer extends State<StatefulDrawer>{
                 child:SizedBox(
                   height: 220,
                   child: UserAccountsDrawerHeader(
-                    accountName: Text(name),
-                    accountEmail:const Text("test@gmail.com"),
-                    currentAccountPicture: const CircleAvatar(
+                    accountName: name==""?const Text("guest"): Text(name),
+                    accountEmail:name==""?const Text("not login"): Text(name+"@gmail.com"),
+                    currentAccountPicture: name == ''?Icon(
+                      size:60,
+                      BootstrapIcons.person_fill,
+                      color: Color(0XFFFFFFFF),
+                    ):const CircleAvatar(
+                      radius: 60.0,
                       backgroundImage: NetworkImage("http://media.discordapp.net/attachments/1051886825142243419/1052240060612890744/1606783962.png"),
                     ),
                     decoration: const BoxDecoration(
@@ -152,21 +158,31 @@ class _StatefulDrawer extends State<StatefulDrawer>{
             height: 10,
           ),
           InkWell(
-            child: const ListTile(
-              title: Text("login",
+            child: ListTile(
+              title: name == ""?const Text("login",
+                  style: TextStyle(
+                  color: Colors.white,
+              ),
+                ):const Text("logout",
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
               leading: CircleAvatar(
                 backgroundColor: Colors.transparent,
-                child:  Icon(BootstrapIcons.box_arrow_in_right,color: Color(0XFFFFFFFF),),
+                child:  name == ""?Icon(BootstrapIcons.box_arrow_in_right,color: Color(0XFFFFFFFF),):Icon(BootstrapIcons.box_arrow_in_left,color: Color(0XFFFFFFFF),),
               ),
             ),
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (BuildContext context)=> const CategoryPage())
-              );
+              if(name==""){
+                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context)=> const CategoryPage())
+                );
+              }else{
+                Navigator.pop(context);
+                name = "";
+              }
             },
           ),
         ],
@@ -323,7 +339,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     ),
                   ),
                   onTap: (){
-                    print("test");
+                    if(name == ""){
+                      showAlert(context);
+                    }else{
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context)=> const ChatGPT())
+                      );
+                    }
                   },
                 ),
 
@@ -440,13 +462,62 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 ),
               ),
               onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (BuildContext context)=> const WebGlLoaderObj())
-                );
+                if(name == ""){
+                  showAlert(context);
+                }else{
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext context)=> const WebGlLoaderObj())
+                  );
+                }
               },
             ),
           ],
         ),
       ));
   }
+}
+
+
+Future<void> showAlert(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Color.fromRGBO(51, 51, 51, .8),
+        titleTextStyle: GoogleFonts.notoSerif(
+          textStyle: const TextStyle(
+            color: Color.fromRGBO(252, 252, 252, 0.8),
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        contentTextStyle:GoogleFonts.notoSerif(
+          textStyle: const TextStyle(
+            color: Color.fromRGBO(252, 252, 252, 0.8),
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+      ),
+        title: const Text('Not login'),
+        content: const Text('login to try the content.....'),
+        actions: <Widget>[
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(51, 51, 51, .8),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                foregroundColor: Colors.white,
+                textStyle: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400
+                )
+            ),
+            child: Text('ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

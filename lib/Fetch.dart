@@ -113,7 +113,24 @@ class Fetch{
       json.decode(utf8.decode(response.bodyBytes)).forEach((element) => list.add(DreamLog.fromJson(element)));
       return list;
     }else{
+      throw Exception('Failed to fetch');
+    }
+  }
 
+  static Future<String> chat(String promp)async{
+    final response = await http.post(
+      Uri.parse("https://dev.ethci.org:2087/chat"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'promp': promp,
+      }),
+    );
+
+    if(response.statusCode == 200){
+      return response.body;
+    }else{
       throw Exception('Failed to fetch');
     }
   }
